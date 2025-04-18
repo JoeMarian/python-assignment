@@ -64,10 +64,18 @@ class Calculator:
         
         elif key == '=':
             try:
+                # Check for division by zero before evaluation
+                if '/0' in self.current.replace(' ', ''):
+                    raise ZeroDivisionError
+                
                 result = eval(self.current)
                 self.display.delete(0, END)
                 self.display.insert(END, result)
                 self.current = str(result)
+            except ZeroDivisionError:
+                self.display.delete(0, END)
+                self.display.insert(END, "Cannot divide by zero")
+                self.current = ""
             except:
                 self.display.delete(0, END)
                 self.display.insert(END, "Error")
