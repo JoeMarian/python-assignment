@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Scraper</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1 class="title">📰 News Scraper</h1>
+    </header>
+    <main>
+        <form method="POST" action="/search" class="search-form">
+            <input type="text" name="keyword" placeholder="Search news..." required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        
+        <section class="form-section">
+            <form method="POST" class="url-form">
+                <label for="url" class="form-label">Enter URL to scrape:</label>
+                <input type="text" id="url" name="url" placeholder="Paste a news URL here..." required>
+                <button type="submit" class="form-button">Scrape News</button>
+            </form>
+        </section>
+        <section class="news-section">
+            {% if top_news %}
+                <h2 class="news-heading">Top News:</h2>
+                <div class="news-container">
+                    {% for news in top_news %}
+                        <div class="news-card">
+                            <h3 class="news-title">
+                                <a href="{{ news.link }}" target="_blank" rel="noopener">{{ news.title }}</a>
+                            </h3>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if latest_news %}
+                <h2 class="news-heading">Latest News:</h2>
+                <div class="news-container">
+                    {% for news in latest_news %}
+                        <div class="news-card">
+                            <h3 class="news-title">
+                                <a href="{{ news.link }}" target="_blank" rel="noopener">{{ news.title }}</a>
+                            </h3>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p class="footer-text">News Scraper &copy; 2024</p>
+    </footer>
+    <script>
+        setInterval(() => {
+            window.location.reload();
+        }, 300000); // Refresh every 5 minutes
+    </script>
+    
+</body>
+</html>

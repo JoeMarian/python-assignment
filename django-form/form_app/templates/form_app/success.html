@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submission Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .data-item {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Submitted Successfully!</h2>
+    <div class="submitted-data">
+        <h3>Submitted Information:</h3>
+        {% for key, value in data.items %}
+        <div class="data-item">
+            <strong>{{ key|title }}:</strong> {{ value }}
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'student_form' %}" class="back-button">Submit Another Form</a>
+</body>
+</html>

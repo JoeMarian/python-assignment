@@ -1,0 +1,6 @@
+Flask
+requests
+beautifulsoup4
+html5lib
+nltk
+TextBlob

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Scraper</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <header>
+        <h1 class="title">📰 News Scraper</h1>
+    </header>
+    <main>
+        <section class="form-section">
+            <form method="POST" class="url-form">
+                <label for="url" class="form-label">Enter URL to scrape:</label>
+                <input type="text" id="url" name="url" placeholder="Paste a news URL here..." required>
+                <button type="submit" class="form-button">Scrape News</button>
+            </form>
+        </section>
+        
+        {% if top_news %}
+        <section class="news-section">
+            <h2>Top News</h2>
+            <div class="news-container">
+                {% for news in top_news %}
+                <div class="news-card">
+                    <h3><a href="{{ news.link }}" target="_blank">{{ news.title }}</a></h3>
+                    <p>{{ news.summary }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+        
+        {% if latest_news %}
+        <section class="news-section">
+            <h2>Latest News</h2>
+            <div class="news-container">
+                {% for news in latest_news %}
+                <div class="news-card">
+                    <h3><a href="{{ news.link }}" target="_blank">{{ news.title }}</a></h3>
+                    <p>{{ news.summary }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </main>
+    <footer>
+        <p>News Scraper &copy; 2024</p>
+    </footer>
+</body>
+</html>
